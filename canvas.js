@@ -5,10 +5,10 @@ ctx.canvas.height = innerHeight;
 
 let particlesArray = [];
 const colors = [
-    'white',
-    'rgba(255, 255, 255, 0.3)',
-    'rgba(173, 216, 230, 0.8)',
-    'rgba(211, 211, 211, 0.8)'
+    // 'white',
+    // 'rgba(255, 255, 255, 0.3)',
+    // 'rgba(173, 216, 230, 0.8)',
+    // 'rgba(211, 211, 211, 0.8)'
 ];
 const maxSize = 40;
 const minSize = 0;
@@ -41,6 +41,8 @@ Particle.prototype.draw = function() {
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
     ctx.fillStyle = this.color;
     ctx.fill();
+    ctx.strokeStyle ='white';
+    ctx.stroke();
 }
 // add update method to particle prototype
 Particle.prototype.update = function() {
@@ -65,7 +67,7 @@ Particle.prototype.update = function() {
                 this.size += 3;
             }
         } else if (this.size > minSize) {
-            this.size -= 0.1;
+            this.size -= 0.5;
         }
         if (this.size < 0) {
             this.size = 0;
@@ -105,3 +107,8 @@ addEventListener('resize',
         canvas.height = innerHeight;
         init();
     })
+// remove mouse position periodically
+setInterval(function() {
+    mouse.x = undefined;
+    mouse.y = undefined;
+}, 1000);
